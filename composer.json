@@ -1,0 +1,22 @@
+{
+    "name": "openapi-test/httpfoundation-testing",
+    "description": "Test project for osteel/openapi-httpfoundation-testing",
+    "type": "project",
+    "require": {
+        "php": "^8.0",
+        "osteel/openapi-httpfoundation-testing": "^0.12",
+        "symfony/http-foundation": "^6.0|^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true
+    }
+}
