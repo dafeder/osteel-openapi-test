@@ -10,7 +10,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     
-    name: PHP 8.3
+    strategy:
+      matrix:
+        osteel-version: ['0.11', '0.12']
+    
+    name: PHP 8.3 - osteel/openapi-httpfoundation-testing v${{ matrix.osteel-version }}
     
     steps:
     - uses: actions/checkout@v4
@@ -30,12 +34,14 @@ jobs:
       uses: actions/cache@v3
       with:
         path: vendor
-        key: ${{ runner.os }}-php-8.3-${{ hashFiles('**/composer.lock') }}
+        key: ${{ runner.os }}-php-8.3-osteel-${{ matrix.osteel-version }}-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
-          ${{ runner.os }}-php-8.3-
+          ${{ runner.os }}-php-8.3-osteel-${{ matrix.osteel-version }}-
     
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
+    - name: Install dependencies with osteel v${{ matrix.osteel-version }}
+      run: |
+        composer require osteel/openapi-httpfoundation-testing:^${{ matrix.osteel-version }} --no-update
+        composer install --prefer-dist --no-progress
     
     - name: Run test suite
       run: vendor/bin/phpunit --testdox
