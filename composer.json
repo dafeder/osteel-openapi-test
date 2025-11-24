@@ -2,6 +2,7 @@
     "name": "openapi-test/httpfoundation-testing",
     "description": "Test project for osteel/openapi-httpfoundation-testing",
     "type": "project",
+    "license": "MIT",
     "require": {
         "php": "^8.0",
         "osteel/openapi-httpfoundation-testing": "^0.12",
