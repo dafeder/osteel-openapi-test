@@ -29,18 +29,9 @@ jobs:
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
     
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-8.3-osteel-${{ matrix.osteel-version }}-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-8.3-osteel-${{ matrix.osteel-version }}-
-    
     - name: Install dependencies with osteel v${{ matrix.osteel-version }}
       run: |
-        composer require osteel/openapi-httpfoundation-testing:^${{ matrix.osteel-version }} --no-update
+        composer require osteel/openapi-httpfoundation-testing:${{ matrix.osteel-version }} --no-update
         composer install --prefer-dist --no-progress
     
     - name: Run test suite
