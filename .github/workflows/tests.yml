@@ -31,7 +31,7 @@ jobs:
     
     - name: Install dependencies with osteel v${{ matrix.osteel-version }}
       run: |
-        composer require osteel/openapi-httpfoundation-testing:${{ matrix.osteel-version }} --no-update
+        composer require osteel/openapi-httpfoundation-testing:^${{ matrix.osteel-version }} --no-update
         composer install --prefer-dist --no-progress
     
     - name: Run test suite
