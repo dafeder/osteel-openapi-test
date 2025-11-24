@@ -61,11 +61,13 @@ class OpenApiValidationTest extends TestCase
         );
 
         // Mock a valid response
-        $responseData = (object) [
-          'id' => 1,
-          'name' => 'John Doe',
-          'email' => 'john@example.com',
-          'age' => 30
+        $responseData = [
+          (object) [
+            'id' => 1,
+            'name' => 'John Doe',
+            'email' => 'john@example.com',
+            'age' => 30
+          ]
         ];
 
         $response = new Response(
@@ -75,7 +77,7 @@ class OpenApiValidationTest extends TestCase
         );
 
         // This should work the same as loading from file
-        $result = $validator->validate($response, '/api/1/metastore/schemas/dataset/items/{identifier}', 'GET');
+        $result = $validator->validate($response, '/users', 'GET');
         
         $this->assertTrue($result, 'Validator loaded from HTTP response should work correctly');
     }
