@@ -12,7 +12,7 @@ jobs:
     
     strategy:
       matrix:
-        osteel-version: ['0.11', '0.12']
+        osteel-version: ['0.11', 'dev-bugfix/reference']
     
     name: PHP 8.3 - osteel/openapi-httpfoundation-testing v${{ matrix.osteel-version }}
     
